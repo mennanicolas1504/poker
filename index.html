@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pt-br">
 <head>
   <meta charset="utf-8" />
@@ -77,70 +77,7 @@
           <h3 class="text-white text-lg font-bold leading-none mb-1">Etapas / Datas</h3>
           <p class="text-white/50 text-xs font-semibold uppercase tracking-widest">Temporada 2026</p>
         </div>
-        <div class="flex flex-col gap-3">
-          <div class="flex items-center gap-3">
-            <button class="js-stage-button flex-1 flex items-center justify-between gap-3 px-4 py-3 rounded-lg bg-primary text-black font-bold group transition-all" data-stage-date="22/01/2026">
-              <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-black">calendar_today</span>
-              <span class="text-sm">22/01/2026</span>
-              </div>
-            </button>
-            <label class="flex items-center justify-center size-10 rounded-lg bg-black/30 text-black hover:bg-black/40 transition-colors cursor-pointer" title="Importar CSV">
-              <span class="material-symbols-outlined text-[20px]">upload_file</span>
-              <input class="js-csv-input hidden" type="file" accept=".csv,text/csv" data-stage-date="22/01/2026" />
-            </label>
-          </div>
-          <div class="flex items-center gap-3">
-            <button class="js-stage-button flex-1 flex items-center gap-3 px-4 py-3 rounded-lg bg-white/5 hover:bg-white/10 text-white font-medium transition-all" data-stage-date="06/02/2026">
-              <span class="material-symbols-outlined text-white/50 group-hover:text-white">calendar_today</span>
-              <span class="text-sm">06/02/2026</span>
-            </button>
-            <label class="flex items-center justify-center size-10 rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors cursor-pointer" title="Importar CSV">
-              <span class="material-symbols-outlined text-[20px]">upload_file</span>
-              <input class="js-csv-input hidden" type="file" accept=".csv,text/csv" data-stage-date="06/02/2026" />
-            </label>
-          </div>
-          <div class="flex items-center gap-3">
-            <button class="js-stage-button flex-1 flex items-center gap-3 px-4 py-3 rounded-lg bg-white/5 hover:bg-white/10 text-white font-medium transition-all" data-stage-date="21/02/2026">
-              <span class="material-symbols-outlined text-white/50 group-hover:text-white">calendar_today</span>
-              <span class="text-sm">21/02/2026</span>
-            </button>
-            <label class="flex items-center justify-center size-10 rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors cursor-pointer" title="Importar CSV">
-              <span class="material-symbols-outlined text-[20px]">upload_file</span>
-              <input class="js-csv-input hidden" type="file" accept=".csv,text/csv" data-stage-date="21/02/2026" />
-            </label>
-          </div>
-          <div class="flex items-center gap-3">
-            <button class="js-stage-button flex-1 flex items-center gap-3 px-4 py-3 rounded-lg bg-white/5 hover:bg-white/10 text-white font-medium transition-all" data-stage-date="08/03/2026">
-              <span class="material-symbols-outlined text-white/50 group-hover:text-white">calendar_today</span>
-              <span class="text-sm">08/03/2026</span>
-            </button>
-            <label class="flex items-center justify-center size-10 rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors cursor-pointer" title="Importar CSV">
-              <span class="material-symbols-outlined text-[20px]">upload_file</span>
-              <input class="js-csv-input hidden" type="file" accept=".csv,text/csv" data-stage-date="08/03/2026" />
-            </label>
-          </div>
-          <div class="flex items-center gap-3">
-            <button class="js-stage-button flex-1 flex items-center gap-3 px-4 py-3 rounded-lg bg-white/5 hover:bg-white/10 text-white font-medium transition-all" data-stage-date="23/03/2026">
-              <span class="material-symbols-outlined text-white/50 group-hover:text-white">calendar_today</span>
-              <span class="text-sm">23/03/2026</span>
-            </button>
-            <label class="flex items-center justify-center size-10 rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors cursor-pointer" title="Importar CSV">
-              <span class="material-symbols-outlined text-[20px]">upload_file</span>
-              <input class="js-csv-input hidden" type="file" accept=".csv,text/csv" data-stage-date="23/03/2026" />
-            </label>
-          </div>
-          <div class="flex items-center gap-3">
-            <button class="js-stage-button flex-1 flex items-center gap-3 px-4 py-3 rounded-lg bg-white/5 hover:bg-white/10 text-white font-medium transition-all" data-stage-date="07/04/2026">
-              <span class="material-symbols-outlined text-white/50 group-hover:text-white">calendar_today</span>
-              <span class="text-sm">07/04/2026</span>
-            </button>
-            <label class="flex items-center justify-center size-10 rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors cursor-pointer" title="Importar CSV">
-              <span class="material-symbols-outlined text-[20px]">upload_file</span>
-              <input class="js-csv-input hidden" type="file" accept=".csv,text/csv" data-stage-date="07/04/2026" />
-            </label>
-          </div>
-        </div>
+        <div id="stage-list" class="flex flex-col gap-3"></div>
       </div>
     </aside>
     <section class="lg:col-span-6 space-y-6">
@@ -302,6 +239,25 @@
     </div>
   </footer>
   <script>
+    const sheetConfig = {
+      id: "1-c2yVSjTMJDlNEFLaaO6iOzadL9gfkN2WaSsFH9lcdA",
+      classificationGid: "0",
+      stagesGid: "567618088",
+    };
+
+    const buildSheetCsvUrl = (gid) =>
+      `https://docs.google.com/spreadsheets/d/${sheetConfig.id}/export?format=csv&gid=${gid}`;
+
+    const fallbackStageDates = [
+      "08/01/2026",
+      "22/01/2026",
+      "06/02/2026",
+      "21/02/2026",
+      "08/03/2026",
+      "23/03/2026",
+      "07/04/2026",
+    ];
+
     const defaultPoints = [
       { pos: "1º Lugar", name: "", pts: 20, className: "text-primary" },
       { pos: "2º Lugar", name: "", pts: 14, className: "text-slate-300" },
@@ -400,22 +356,183 @@
       });
     };
 
-    document.querySelectorAll(".js-stage-button").forEach((button) => {
-      button.addEventListener("click", () => openModal(button.dataset.stageDate));
+    const normalizeDate = (value) => {
+      const trimmed = value.trim();
+      const match = trimmed.match(/(\d{2})\/(\d{2})(?:\/(\d{2,4}))?/);
+      if (!match) return "";
+      const day = match[1];
+      const month = match[2];
+      const year = match[3] ? match[3].padStart(4, "20") : "2026";
+      return `${day}/${month}/${year}`;
+    };
+
+    const parseStageSheetCsv = (content) => {
+      const rows = content
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter(Boolean);
+      if (rows.length === 0) return { stageMap: {}, dates: [] };
+
+      const splitRow = (line) => line.split(/\t|;|,/).map((part) => part.trim());
+      const stageMap = {};
+      const datesSet = new Set();
+      let currentDate = "";
+      let nameIndex = 1;
+      let pointsIndex = 2;
+      let classificationIndex = 0;
+
+      const headerParts = splitRow(rows[0]).map((value) => value.toLowerCase());
+      const hasDateColumn = headerParts.some((value) => value.includes("data"));
+      if (hasDateColumn) {
+        const classificationIdx = headerParts.findIndex((value) => value.includes("classifica"));
+        const dateIdx = headerParts.findIndex((value) => value.includes("data"));
+        const pointsIdx = headerParts.findIndex((value) => value.includes("pont"));
+        const nameIdx = headerParts.findIndex((value) => value.includes("jogador"));
+        rows.slice(1).forEach((line) => {
+          const parts = splitRow(line);
+          const dateValue = normalizeDate(parts[dateIdx] || "");
+          if (dateValue) {
+            datesSet.add(dateValue);
+            if (!stageMap[dateValue]) {
+              stageMap[dateValue] = defaultPoints.map((row) => ({ ...row }));
+            }
+          }
+          const position = normalizeNumber(parts[classificationIdx >= 0 ? classificationIdx : 0] || "");
+          const points = normalizeNumber(parts[pointsIdx >= 0 ? pointsIdx : parts.length - 1] || "");
+          const name = nameIdx >= 0 ? parts[nameIdx] || "" : "";
+          if (!dateValue || !position || points === null) return;
+          stageMap[dateValue][position - 1] = {
+            ...stageMap[dateValue][position - 1],
+            name,
+            pts: points,
+          };
+        });
+        return { stageMap, dates: Array.from(datesSet) };
+      }
+
+      rows.forEach((line) => {
+        const parts = splitRow(line);
+        if (parts.length === 0) return;
+        const lowerParts = parts.map((value) => value.toLowerCase());
+        const hasHeader =
+          lowerParts.some((value) => value.includes("classifica")) &&
+          lowerParts.some((value) => value.includes("pont"));
+
+        if (hasHeader) {
+          const headerDate = lowerParts.find((value) => /\d{2}\/\d{2}/.test(value));
+          currentDate = headerDate ? normalizeDate(headerDate) : currentDate;
+          if (currentDate) {
+            datesSet.add(currentDate);
+            if (!stageMap[currentDate]) {
+              stageMap[currentDate] = defaultPoints.map((row) => ({ ...row }));
+            }
+          }
+          classificationIndex = lowerParts.findIndex((value) => value.includes("classifica"));
+          nameIndex = classificationIndex >= 0 ? classificationIndex + 1 : 1;
+          pointsIndex = lowerParts.findIndex((value) => value.includes("pont"));
+          if (pointsIndex < 0) pointsIndex = parts.length - 1;
+          return;
+        }
+
+        const position = normalizeNumber(parts[0]);
+        if (!position || !currentDate) return;
+        const name = parts[nameIndex] || "";
+        const points = normalizeNumber(parts[pointsIndex] || "");
+        if (points === null) return;
+        if (!stageMap[currentDate]) {
+          stageMap[currentDate] = defaultPoints.map((row) => ({ ...row }));
+        }
+        stageMap[currentDate][position - 1] = {
+          ...stageMap[currentDate][position - 1],
+          name,
+          pts: points,
+        };
+      });
+
+      return { stageMap, dates: Array.from(datesSet) };
+    };
+
+    const fetchCsv = async (url) => {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Falha ao carregar CSV: ${response.status}`);
+      }
+      return response.text();
+    };
+
+    const loadStagesFromSheet = async () => {
+      try {
+        const csv = await fetchCsv(buildSheetCsvUrl(sheetConfig.stagesGid));
+        const parsedStages = parseStageSheetCsv(csv);
+        Object.keys(parsedStages.stageMap).forEach((date) => {
+          stagePoints[date] = parsedStages.stageMap[date];
+        });
+        renderStageList(parsedStages.dates.length ? parsedStages.dates : fallbackStageDates);
+      } catch (error) {
+        console.error(error);
+        renderStageList(fallbackStageDates);
+      }
+    };
+
+    const loadClassificationFromSheet = async () => {
+      try {
+        const csv = await fetchCsv(buildSheetCsvUrl(sheetConfig.classificationGid));
+        const parsed = parseClassificationCsv(csv);
+        renderClassification(parsed);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const stageList = document.getElementById("stage-list");
+
+    const renderStageList = (dates) => {
+      if (!stageList) return;
+      const uniqueDates = Array.from(new Set(dates));
+      stageList.innerHTML = uniqueDates
+        .map(
+          (date) => `
+          <div class="flex items-center gap-3">
+            <button class="js-stage-button flex-1 flex items-center gap-3 px-4 py-3 rounded-lg bg-white/5 hover:bg-white/10 text-white font-medium transition-all" data-stage-date="${date}">
+              <span class="material-symbols-outlined text-white/50 group-hover:text-white">calendar_today</span>
+              <span class="text-sm">${date}</span>
+            </button>
+            <label class="flex items-center justify-center size-10 rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors cursor-pointer" title="Importar CSV">
+              <span class="material-symbols-outlined text-[20px]">upload_file</span>
+              <input class="js-csv-input hidden" type="file" accept=".csv,text/csv" data-stage-date="${date}" />
+            </label>
+          </div>
+        `
+        )
+        .join("");
+    };
+
+    const ensureStageDefaults = (dates) => {
+      dates.forEach((date) => {
+        if (!stagePoints[date]) {
+          stagePoints[date] = defaultPoints.map((row) => ({ ...row }));
+        }
+      });
+    };
+
+    stageList?.addEventListener("click", (event) => {
+      const button = event.target.closest(".js-stage-button");
+      if (!button) return;
+      openModal(button.dataset.stageDate);
     });
 
-    document.querySelectorAll(".js-csv-input").forEach((input) => {
-      input.addEventListener("change", (event) => {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        const date = event.target.dataset.stageDate;
-        reader.onload = () => {
-          stagePoints[date] = parseCsvPoints(reader.result);
-          openModal(date);
-        };
-        reader.readAsText(file);
-      });
+    stageList?.addEventListener("change", (event) => {
+      const input = event.target.closest(".js-csv-input");
+      if (!input) return;
+      const file = input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      const date = input.dataset.stageDate;
+      reader.onload = () => {
+        stagePoints[date] = parseCsvPoints(reader.result);
+        openModal(date);
+      };
+      reader.readAsText(file);
     });
 
     const classificationBody = document.getElementById("classification-body");
@@ -542,6 +659,11 @@
         reader.readAsText(file);
       });
     }
+
+    ensureStageDefaults(fallbackStageDates);
+    renderStageList(fallbackStageDates);
+    loadClassificationFromSheet();
+    loadStagesFromSheet();
 
     modalClose.addEventListener("click", closeModal);
     modal.addEventListener("click", (event) => {
